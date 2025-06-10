@@ -43,30 +43,30 @@ export default function ProductForm({ onSave, onCancel, initial, brands = [], ca
   }
 
   return (
-    <form className="space-y-2 mb-4" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
-        <label className="block">
+        <label>
           Product Image
-          <input className="block mt-1" type="file" accept="image/*" onChange={handleImageChange} />
+          <input type="file" accept="image/*" onChange={handleImageChange} />
         </label>
-        {image && <img src={image} className="w-12 h-12 object-cover mt-1" alt="preview" />}
+        {image && <img src={image} alt="preview" />}
       </div>
       <div>
-        <label className="block">
+        <label>
           SKU
-          <input className="border p-1 w-full" value={sku} onChange={e => setSku(e.target.value.toUpperCase())} required />
+          <input value={sku} onChange={e => setSku(e.target.value.toUpperCase())} required />
         </label>
       </div>
       <div>
-        <label className="block">
+        <label>
           Product Name
-          <input className="border p-1 w-full" value={name} onChange={e => setName(e.target.value)} maxLength={50} required />
+          <input value={name} onChange={e => setName(e.target.value)} maxLength={50} required />
         </label>
       </div>
       <div>
-        <label className="block">
+        <label>
           Brand
-          <select className="border p-1 w-full" value={brand} onChange={e => setBrand(e.target.value)}>
+          <select value={brand} onChange={e => setBrand(e.target.value)}>
             <option value="">Select brand</option>
             {brands.map(b => (
               <option key={b} value={b}>{b}</option>
@@ -75,9 +75,9 @@ export default function ProductForm({ onSave, onCancel, initial, brands = [], ca
         </label>
       </div>
       <div>
-        <label className="block">
+        <label>
           Categories
-          <select className="border p-1 w-full" multiple value={categories} onChange={handleCategoryChange}>
+          <select multiple value={categories} onChange={handleCategoryChange}>
             {categoriesOptions.map(c => (
               <option key={c} value={c}>{c}</option>
             ))}
@@ -85,20 +85,20 @@ export default function ProductForm({ onSave, onCancel, initial, brands = [], ca
         </label>
       </div>
       <div>
-        <label className="block">
+        <label>
           Price
-          <input className="border p-1 w-full" type="number" step="0.01" value={price} onChange={e => setPrice(e.target.value)} required />
+          <input type="number" step="0.01" value={price} onChange={e => setPrice(e.target.value)} required />
         </label>
       </div>
       <div>
-        <label className="block">
+        <label>
           Discount %
-          <input className="border p-1 w-full" type="number" step="0.01" value={discount} onChange={e => setDiscount(e.target.value)} min="0" max="100" />
+          <input type="number" step="0.01" value={discount} onChange={e => setDiscount(e.target.value)} min="0" max="100" />
         </label>
       </div>
-      <div className="space-x-2">
-        <button className="px-2 py-1 border" type="submit">Save</button>
-        <button className="px-2 py-1 border" type="button" onClick={onCancel}>Cancel</button>
+      <div>
+        <button type="submit">Save</button>
+        <button type="button" onClick={onCancel}>Cancel</button>
       </div>
     </form>
   )
