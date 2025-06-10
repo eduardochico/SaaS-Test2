@@ -42,7 +42,15 @@ function App() {
     </>
   )
 
+  const pageTitle = {
+    home: 'Home',
+    products: 'Products',
+    brands: 'Brands',
+    categories: 'Categories',
+  }[page]
+
   return (
+
     <div className="flex">
       <aside className="flex flex-col mr-4 pr-4 border-r border-gray-300 space-y-2">
         <button className="px-2 py-1 rounded bg-gray-200" onClick={() => setPage('home')}>Home</button>
@@ -65,6 +73,7 @@ function App() {
           />
         )}
       </main>
+
     </div>
   )
 }
