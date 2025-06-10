@@ -97,8 +97,8 @@ export default function ProductForm({ onSave, onCancel, initial, brands = [], ca
         </label>
       </div>
       <div className="space-x-2">
-        <button className="px-2 py-1 rounded bg-blue-600 text-white" type="submit">Save</button>
-        <button className="px-2 py-1 rounded bg-gray-500 text-white" type="button" onClick={onCancel}>Cancel</button>
+        <button className="px-2 py-1 border" type="submit">Save</button>
+        <button className="px-2 py-1 border" type="button" onClick={onCancel}>Cancel</button>
       </div>
     </form>
   )

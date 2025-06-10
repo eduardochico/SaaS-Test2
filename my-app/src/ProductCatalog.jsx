@@ -57,7 +57,7 @@ export default function ProductCatalog({ brands, categories }) {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-bold mb-2">Product Catalog</h2>
+      <h2 className="text-xl mb-2">Product Catalog</h2>
       {showForm ? (
         <ProductForm
           onSave={editingIndex !== null ? updateProduct : addProduct}
@@ -67,7 +67,7 @@ export default function ProductCatalog({ brands, categories }) {
           categoriesOptions={categories}
         />
       ) : (
-        <button className="mb-2 px-2 py-1 rounded bg-blue-600 text-white" onClick={() => setShowForm(true)}>Add Product</button>
+        <button className="mb-2 px-2 py-1 border" onClick={() => setShowForm(true)}>Add Product</button>
       )}
       <input
         className="border p-1 mb-2"
@@ -75,17 +75,17 @@ export default function ProductCatalog({ brands, categories }) {
         value={search}
         onChange={e => { setSearch(e.target.value); setPage(1) }}
       />
-      <table className="w-full border-collapse mb-2">
+      <table className="table-auto w-full mb-2">
         <thead>
           <tr>
-            <th className="border p-2 text-left">Product Image</th>
-            <th className="border p-2 text-left">SKU</th>
-            <th className="border p-2 text-left">Product Name</th>
-            <th className="border p-2 text-left">Brand</th>
-            <th className="border p-2 text-left">Categories</th>
-            <th className="border p-2 text-left">Price</th>
-            <th className="border p-2 text-left">Discount %</th>
-            <th className="border p-2 text-left">Actions</th>
+            <th className="p-2 text-left">Product Image</th>
+            <th className="p-2 text-left">SKU</th>
+            <th className="p-2 text-left">Product Name</th>
+            <th className="p-2 text-left">Brand</th>
+            <th className="p-2 text-left">Categories</th>
+            <th className="p-2 text-left">Price</th>
+            <th className="p-2 text-left">Discount %</th>
+            <th className="p-2 text-left">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -93,16 +93,16 @@ export default function ProductCatalog({ brands, categories }) {
             const index = start + i
             return (
               <tr key={p.sku}>
-                <td className="border p-2"><img className="w-12 h-12 object-cover" src={p.image} alt={p.name} /></td>
-                <td className="border p-2">{p.sku}</td>
-                <td className="border p-2">{p.name}</td>
-                <td className="border p-2">{p.brand}</td>
-                <td className="border p-2">{p.categories.join(', ')}</td>
-                <td className="border p-2">{p.price.toFixed(2)}</td>
-                <td className="border p-2">{p.discount}</td>
-                <td className="border p-2 space-x-1">
-                  <button className="px-2 py-1 rounded bg-blue-500 text-white" onClick={() => { setEditingIndex(index); setShowForm(true) }}>Edit</button>
-                  <button className="px-2 py-1 rounded bg-red-500 text-white" onClick={() => deleteProduct(index)}>Delete</button>
+                <td className="p-2"><img className="w-12 h-12 object-cover" src={p.image} alt={p.name} /></td>
+                <td className="p-2">{p.sku}</td>
+                <td className="p-2">{p.name}</td>
+                <td className="p-2">{p.brand}</td>
+                <td className="p-2">{p.categories.join(', ')}</td>
+                <td className="p-2">{p.price.toFixed(2)}</td>
+                <td className="p-2">{p.discount}</td>
+                <td className="p-2 space-x-1">
+                  <button className="px-2 py-1 border" onClick={() => { setEditingIndex(index); setShowForm(true) }}>Edit</button>
+                  <button className="px-2 py-1 border" onClick={() => deleteProduct(index)}>Delete</button>
                 </td>
               </tr>
             )
@@ -110,11 +110,11 @@ export default function ProductCatalog({ brands, categories }) {
         </tbody>
       </table>
       <div className="flex items-center space-x-2">
-        <button className="px-2 py-1 rounded bg-gray-200" onClick={prevPage} disabled={page === 1}>Prev</button>
+        <button className="px-2 py-1 border" onClick={prevPage} disabled={page === 1}>Prev</button>
         <span>
           Page {page} of {totalPages}
         </span>
-        <button className="px-2 py-1 rounded bg-gray-200" onClick={nextPage} disabled={page === totalPages}>Next</button>
+        <button className="px-2 py-1 border" onClick={nextPage} disabled={page === totalPages}>Next</button>
       </div>
     </div>
   )
