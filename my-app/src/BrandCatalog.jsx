@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './SimpleCatalog.css'
 
 export default function BrandCatalog({ brands, setBrands }) {
   const [name, setName] = useState('')
@@ -33,26 +32,27 @@ export default function BrandCatalog({ brands, setBrands }) {
   }
 
   return (
-    <div className="catalog">
-      <h2>Brands</h2>
-      <form onSubmit={handleSubmit} className="simple-form">
+    <div className="p-4">
+      <h2 className="text-xl font-bold mb-2">Brands</h2>
+      <form onSubmit={handleSubmit} className="mb-2 flex space-x-2">
         <input
+          className="border p-1 flex-grow"
           placeholder="Brand name"
           value={name}
           onChange={e => setName(e.target.value)}
           required
         />
-        <button type="submit">{editingIndex !== null ? 'Update' : 'Add'}</button>
+        <button className="px-2 py-1 rounded bg-blue-600 text-white" type="submit">{editingIndex !== null ? 'Update' : 'Add'}</button>
         {editingIndex !== null && (
-          <button type="button" onClick={cancel}>Cancel</button>
+          <button className="px-2 py-1 rounded bg-gray-500 text-white" type="button" onClick={cancel}>Cancel</button>
         )}
       </form>
-      <ul className="simple-list">
+      <ul className="list-none p-0">
         {brands.map((b, i) => (
-          <li key={i}>
+          <li key={i} className="mb-2">
             {b}
-            <button onClick={() => edit(i)}>Edit</button>
-            <button onClick={() => remove(i)}>Delete</button>
+            <button className="ml-2 text-blue-600" onClick={() => edit(i)}>Edit</button>
+            <button className="ml-2 text-red-600" onClick={() => remove(i)}>Delete</button>
           </li>
         ))}
       </ul>
