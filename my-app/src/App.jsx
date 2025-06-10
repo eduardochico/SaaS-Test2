@@ -3,10 +3,20 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import ProductCatalog from './ProductCatalog.jsx'
+import BrandCatalog from './BrandCatalog.jsx'
+import CategoryCatalog from './CategoryCatalog.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
   const [page, setPage] = useState('home')
+  const [brands, setBrands] = useState(['Brand A', 'Brand B', 'Brand C'])
+  const [categories, setCategories] = useState([
+    'Tools',
+    'Electronics',
+    'Accessories',
+    'Outdoor',
+    'Home',
+  ])
 
   const homeContent = (
     <>
@@ -38,10 +48,23 @@ function App() {
       <aside className="sidebar">
         <button onClick={() => setPage('home')}>Home</button>
         <button onClick={() => setPage('products')}>Products</button>
+        <button onClick={() => setPage('brands')}>Brands</button>
+        <button onClick={() => setPage('categories')}>Categories</button>
       </aside>
       <main className="content">
         {page === 'home' && homeContent}
-        {page === 'products' && <ProductCatalog />}
+        {page === 'products' && (
+          <ProductCatalog brands={brands} categories={categories} />
+        )}
+        {page === 'brands' && (
+          <BrandCatalog brands={brands} setBrands={setBrands} />
+        )}
+        {page === 'categories' && (
+          <CategoryCatalog
+            categories={categories}
+            setCategories={setCategories}
+          />
+        )}
       </main>
     </div>
   )

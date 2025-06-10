@@ -1,0 +1,17 @@
+.simple-form {
+  margin-bottom: 1rem;
+}
+.simple-form input {
+  margin-right: 0.5rem;
+  padding: 0.25rem;
+}
+.simple-list {
+  list-style: none;
+  padding-left: 0;
+}
+.simple-list li {
+  margin-bottom: 0.5rem;
+}
+.simple-list button {
+  margin-left: 0.5rem;
+}
