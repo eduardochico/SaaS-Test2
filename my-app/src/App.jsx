@@ -6,8 +6,9 @@ import ProductCatalog from './ProductCatalog.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [page, setPage] = useState('home')
 
-  return (
+  const homeContent = (
     <>
       <div>
         <a href="https://vite.dev" target="_blank">
@@ -26,11 +27,23 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
-      <ProductCatalog />
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
     </>
+  )
+
+  return (
+    <div className="app">
+      <aside className="sidebar">
+        <button onClick={() => setPage('home')}>Home</button>
+        <button onClick={() => setPage('products')}>Products</button>
+      </aside>
+      <main className="content">
+        {page === 'home' && homeContent}
+        {page === 'products' && <ProductCatalog />}
+      </main>
+    </div>
   )
 }
 

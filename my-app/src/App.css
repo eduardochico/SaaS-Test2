@@ -40,3 +40,24 @@
 .read-the-docs {
   color: #888;
 }
+
+.app {
+  display: flex;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+  padding-right: 1rem;
+  border-right: 1px solid #ddd;
+}
+
+.sidebar button {
+  margin-bottom: 0.5rem;
+}
+
+.content {
+  flex: 1;
+  text-align: left;
+}
