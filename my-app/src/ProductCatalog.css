@@ -2,22 +2,30 @@
   padding: 1rem;
 }
 
-.catalog ul {
-  list-style: none;
-  padding: 0;
+.search {
+  margin-bottom: 0.5rem;
+  padding: 0.25rem;
 }
 
-.catalog li {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.25rem 0;
-  border-bottom: 1px solid #ddd;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 0.5rem;
 }
 
-.catalog .name {
-  font-weight: bold;
+th,
+td {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  text-align: left;
 }
 
-.catalog .price {
-  color: green;
+.thumbnail {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.pagination button {
+  margin: 0 0.25rem;
 }
