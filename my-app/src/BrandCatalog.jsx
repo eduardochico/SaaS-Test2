@@ -32,27 +32,27 @@ export default function BrandCatalog({ brands, setBrands }) {
   }
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl mb-2">Brands</h2>
-      <form onSubmit={handleSubmit} className="mb-2 flex space-x-2">
+    <div>
+      <h2>Brands</h2>
+      <form onSubmit={handleSubmit}>
         <input
-          className="border p-1 flex-grow"
+         
           placeholder="Brand name"
           value={name}
           onChange={e => setName(e.target.value)}
           required
         />
-        <button className="px-2 py-1 border" type="submit">{editingIndex !== null ? 'Update' : 'Add'}</button>
+        <button type="submit">{editingIndex !== null ? 'Update' : 'Add'}</button>
         {editingIndex !== null && (
-          <button className="px-2 py-1 border" type="button" onClick={cancel}>Cancel</button>
+          <button type="button" onClick={cancel}>Cancel</button>
         )}
       </form>
-      <ul className="list-none p-0">
+      <ul>
         {brands.map((b, i) => (
-          <li key={i} className="mb-2">
+          <li key={i}>
             {b}
-            <button className="ml-2 underline" onClick={() => edit(i)}>Edit</button>
-            <button className="ml-2 underline" onClick={() => remove(i)}>Delete</button>
+            <button onClick={() => edit(i)}>Edit</button>
+            <button onClick={() => remove(i)}>Delete</button>
           </li>
         ))}
       </ul>
