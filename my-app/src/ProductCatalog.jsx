@@ -18,7 +18,7 @@ const initialProducts = [
   { sku: 'SKU012', name: 'Thingy L', categories: ['Accessories', 'Home'], price: 7.99, image: placeholder, brand: 'Brand C', discount: 0 }
 ]
 
-export default function ProductCatalog() {
+export default function ProductCatalog({ brands, categories }) {
   const [products, setProducts] = useState(initialProducts)
   const [editingIndex, setEditingIndex] = useState(null)
   const [showForm, setShowForm] = useState(false)
@@ -64,6 +64,8 @@ export default function ProductCatalog() {
           onSave={editingIndex !== null ? updateProduct : addProduct}
           onCancel={() => { setShowForm(false); setEditingIndex(null) }}
           initial={editingIndex !== null ? products[editingIndex] : null}
+          brands={brands}
+          categoriesOptions={categories}
         />
       ) : (
         <button onClick={() => setShowForm(true)}>Add Product</button>

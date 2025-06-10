@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react'
 import './ProductForm.css'
 
-const brands = ['Brand A', 'Brand B', 'Brand C']
-const categoriesOptions = ['Tools', 'Electronics', 'Accessories', 'Outdoor', 'Home']
-
-export default function ProductForm({ onSave, onCancel, initial }) {
+export default function ProductForm({ onSave, onCancel, initial, brands = [], categoriesOptions = [] }) {
   const [image, setImage] = useState(initial?.image || '')
   const [sku, setSku] = useState(initial?.sku || '')
   const [name, setName] = useState(initial?.name || '')
