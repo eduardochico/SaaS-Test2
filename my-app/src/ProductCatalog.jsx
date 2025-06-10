@@ -1,20 +1,21 @@
 import { useState } from 'react'
 import './ProductCatalog.css'
+const placeholder = 'https://via.placeholder.com/50'
 
 export default function ProductCatalog() {
   const products = [
-    { sku: 'SKU001', name: 'Widget A', categories: ['Tools'], price: '$9.99', image: 'https://via.placeholder.com/50' },
-    { sku: 'SKU002', name: 'Gadget B', categories: ['Electronics'], price: '$19.99', image: 'https://via.placeholder.com/50' },
-    { sku: 'SKU003', name: 'Thingamajig C', categories: ['Accessories'], price: '$5.50', image: 'https://via.placeholder.com/50' },
-    { sku: 'SKU004', name: 'Doohickey D', categories: ['Tools', 'Outdoor'], price: '$14.25', image: 'https://via.placeholder.com/50' },
-    { sku: 'SKU005', name: 'Widget E', categories: ['Tools'], price: '$8.00', image: 'https://via.placeholder.com/50' },
-    { sku: 'SKU006', name: 'Gadget F', categories: ['Electronics'], price: '$22.00', image: 'https://via.placeholder.com/50' },
-    { sku: 'SKU007', name: 'Thingamabob G', categories: ['Accessories'], price: '$11.75', image: 'https://via.placeholder.com/50' },
-    { sku: 'SKU008', name: 'Widget H', categories: ['Outdoor'], price: '$6.40', image: 'https://via.placeholder.com/50' },
-    { sku: 'SKU009', name: 'Gizmo I', categories: ['Electronics', 'Tools'], price: '$13.30', image: 'https://via.placeholder.com/50' },
-    { sku: 'SKU010', name: 'Contraption J', categories: ['Home'], price: '$15.00', image: 'https://via.placeholder.com/50' },
-    { sku: 'SKU011', name: 'Device K', categories: ['Electronics'], price: '$18.25', image: 'https://via.placeholder.com/50' },
-    { sku: 'SKU012', name: 'Thingy L', categories: ['Accessories', 'Home'], price: '$7.99', image: 'https://via.placeholder.com/50' },
+    { sku: 'SKU001', name: 'Widget A', categories: ['Tools'], price: '$9.99', image: placeholder },
+    { sku: 'SKU002', name: 'Gadget B', categories: ['Electronics'], price: '$19.99', image: placeholder },
+    { sku: 'SKU003', name: 'Thingamajig C', categories: ['Accessories'], price: '$5.50', image: placeholder },
+    { sku: 'SKU004', name: 'Doohickey D', categories: ['Tools', 'Outdoor'], price: '$14.25', image: placeholder },
+    { sku: 'SKU005', name: 'Widget E', categories: ['Tools'], price: '$8.00', image: placeholder },
+    { sku: 'SKU006', name: 'Gadget F', categories: ['Electronics'], price: '$22.00', image: placeholder },
+    { sku: 'SKU007', name: 'Thingamabob G', categories: ['Accessories'], price: '$11.75', image: placeholder },
+    { sku: 'SKU008', name: 'Widget H', categories: ['Outdoor'], price: '$6.40', image: placeholder },
+    { sku: 'SKU009', name: 'Gizmo I', categories: ['Electronics', 'Tools'], price: '$13.30', image: placeholder },
+    { sku: 'SKU010', name: 'Contraption J', categories: ['Home'], price: '$15.00', image: placeholder },
+    { sku: 'SKU011', name: 'Device K', categories: ['Electronics'], price: '$18.25', image: placeholder },
+    { sku: 'SKU012', name: 'Thingy L', categories: ['Accessories', 'Home'], price: '$7.99', image: placeholder }
   ]
 
   const [search, setSearch] = useState('')

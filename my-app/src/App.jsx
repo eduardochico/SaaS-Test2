@@ -34,14 +34,16 @@ function App() {
   )
 
   return (
-    <>
-      <nav>
+    <div className="app">
+      <aside className="sidebar">
         <button onClick={() => setPage('home')}>Home</button>
         <button onClick={() => setPage('products')}>Products</button>
-      </nav>
-      {page === 'home' && homeContent}
-      {page === 'products' && <ProductCatalog />}
-    </>
+      </aside>
+      <main className="content">
+        {page === 'home' && homeContent}
+        {page === 'products' && <ProductCatalog />}
+      </main>
+    </div>
   )
 }
 
