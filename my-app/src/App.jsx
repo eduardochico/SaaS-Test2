@@ -42,29 +42,44 @@ function App() {
     </>
   )
 
+  const pageTitle = {
+    home: 'Home',
+    products: 'Products',
+    brands: 'Brands',
+    categories: 'Categories',
+  }[page]
+
   return (
-    <div className="flex">
-      <aside className="flex flex-col mr-4 pr-4 border-r border-gray-300 space-y-2">
-        <button className="px-2 py-1 rounded bg-gray-200" onClick={() => setPage('home')}>Home</button>
-        <button className="px-2 py-1 rounded bg-gray-200" onClick={() => setPage('products')}>Products</button>
-        <button className="px-2 py-1 rounded bg-gray-200" onClick={() => setPage('brands')}>Brands</button>
-        <button className="px-2 py-1 rounded bg-gray-200" onClick={() => setPage('categories')}>Categories</button>
+    <div className="flex h-screen bg-gray-100">
+      <aside className="hidden md:flex md:flex-col w-64 border-r border-gray-200 bg-white">
+        <div className="flex h-16 items-center px-4 font-semibold border-b">Catalog App</div>
+        <nav className="flex flex-col flex-1 px-4 py-4 space-y-2">
+          <button className="text-left px-2 py-1 rounded hover:bg-gray-100" onClick={() => setPage('home')}>Home</button>
+          <button className="text-left px-2 py-1 rounded hover:bg-gray-100" onClick={() => setPage('products')}>Products</button>
+          <button className="text-left px-2 py-1 rounded hover:bg-gray-100" onClick={() => setPage('brands')}>Brands</button>
+          <button className="text-left px-2 py-1 rounded hover:bg-gray-100" onClick={() => setPage('categories')}>Categories</button>
+        </nav>
       </aside>
-      <main className="flex-1 text-left">
-        {page === 'home' && homeContent}
-        {page === 'products' && (
-          <ProductCatalog brands={brands} categories={categories} />
-        )}
-        {page === 'brands' && (
-          <BrandCatalog brands={brands} setBrands={setBrands} />
-        )}
-        {page === 'categories' && (
-          <CategoryCatalog
-            categories={categories}
-            setCategories={setCategories}
-          />
-        )}
-      </main>
+      <div className="flex flex-col flex-1">
+        <header className="flex h-16 items-center border-b border-gray-200 bg-white px-4">
+          <h1 className="text-xl font-semibold">{pageTitle}</h1>
+        </header>
+        <main className="flex-1 overflow-y-auto p-4 text-left">
+          {page === 'home' && homeContent}
+          {page === 'products' && (
+            <ProductCatalog brands={brands} categories={categories} />
+          )}
+          {page === 'brands' && (
+            <BrandCatalog brands={brands} setBrands={setBrands} />
+          )}
+          {page === 'categories' && (
+            <CategoryCatalog
+              categories={categories}
+              setCategories={setCategories}
+            />
+          )}
+        </main>
+      </div>
     </div>
   )
 }
