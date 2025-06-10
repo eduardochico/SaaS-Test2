@@ -1,6 +1,6 @@
 # SaaS-Test2
 
-This repository contains a small React application created with Vite. The app showcases a simple product catalog page.
+This repository contains a small React application created with Vite. The app showcases a simple product catalog page and now uses **Tailwind CSS** for styling.
 
 ## Getting Started
 
@@ -12,5 +12,7 @@ This repository contains a small React application created with Vite. The app sh
    ```bash
    npm run dev --workspace=my-app
    ```
+
+Tailwind CSS configuration is located in `my-app/tailwind.config.js`. The main styles are imported in `src/index.css`.
 
 The product catalog is located in `my-app/src/ProductCatalog.jsx` and is rendered inside the main `App` component.
