@@ -15,7 +15,7 @@ export default function ProductCatalog() {
     { sku: 'SKU009', name: 'Gizmo I', categories: ['Electronics', 'Tools'], price: '$13.30', image: placeholder },
     { sku: 'SKU010', name: 'Contraption J', categories: ['Home'], price: '$15.00', image: placeholder },
     { sku: 'SKU011', name: 'Device K', categories: ['Electronics'], price: '$18.25', image: placeholder },
-    { sku: 'SKU012', name: 'Thingy L', categories: ['Accessories', 'Home'], price: '$7.99', image: placeholder },
+    { sku: 'SKU012', name: 'Thingy L', categories: ['Accessories', 'Home'], price: '$7.99', image: placeholder }
   ]
 
   const [search, setSearch] = useState('')
