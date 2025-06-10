@@ -1,5 +1,14 @@
 import { useState } from 'react'
 import ProductForm from './ProductForm.jsx'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import TextField from '@mui/material/TextField'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
 const placeholder = 'https://via.placeholder.com/50'
 
 const initialProducts = [
@@ -56,8 +65,8 @@ export default function ProductCatalog({ brands, categories }) {
   const nextPage = () => setPage(p => Math.min(totalPages, p + 1))
 
   return (
-    <div>
-      <h2>Product Catalog</h2>
+    <Box>
+      <Typography variant="h5" sx={{ mb: 2 }}>Product Catalog</Typography>
       {showForm ? (
         <ProductForm
           onSave={editingIndex !== null ? updateProduct : addProduct}
@@ -67,55 +76,53 @@ export default function ProductCatalog({ brands, categories }) {
           categoriesOptions={categories}
         />
       ) : (
-        <button onClick={() => setShowForm(true)}>Add Product</button>
+        <Button variant="contained" onClick={() => setShowForm(true)}>Add Product</Button>
       )}
-      <input
-       
+      <TextField
         placeholder="Search..."
         value={search}
         onChange={e => { setSearch(e.target.value); setPage(1) }}
+        sx={{ my: 2 }}
       />
-      <table>
-        <thead>
-          <tr>
-            <th>Product Image</th>
-            <th>SKU</th>
-            <th>Product Name</th>
-            <th>Brand</th>
-            <th>Categories</th>
-            <th>Price</th>
-            <th>Discount %</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Product Image</TableCell>
+            <TableCell>SKU</TableCell>
+            <TableCell>Product Name</TableCell>
+            <TableCell>Brand</TableCell>
+            <TableCell>Categories</TableCell>
+            <TableCell>Price</TableCell>
+            <TableCell>Discount %</TableCell>
+            <TableCell>Actions</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {paginated.map((p, i) => {
             const index = start + i
             return (
-              <tr key={p.sku}>
-                <td><img src={p.image} alt={p.name} /></td>
-                <td>{p.sku}</td>
-                <td>{p.name}</td>
-                <td>{p.brand}</td>
-                <td>{p.categories.join(', ')}</td>
-                <td>{p.price.toFixed(2)}</td>
-                <td>{p.discount}</td>
-                <td>
-                  <button onClick={() => { setEditingIndex(index); setShowForm(true) }}>Edit</button>
-                  <button onClick={() => deleteProduct(index)}>Delete</button>
-                </td>
-              </tr>
+              <TableRow key={p.sku}>
+                <TableCell><img src={p.image} alt={p.name} /></TableCell>
+                <TableCell>{p.sku}</TableCell>
+                <TableCell>{p.name}</TableCell>
+                <TableCell>{p.brand}</TableCell>
+                <TableCell>{p.categories.join(', ')}</TableCell>
+                <TableCell>{p.price.toFixed(2)}</TableCell>
+                <TableCell>{p.discount}</TableCell>
+                <TableCell>
+                  <Button size="small" onClick={() => { setEditingIndex(index); setShowForm(true) }}>Edit</Button>
+                  <Button size="small" onClick={() => deleteProduct(index)}>Delete</Button>
+                </TableCell>
+              </TableRow>
             )
           })}
-        </tbody>
-      </table>
-      <div>
-        <button onClick={prevPage} disabled={page === 1}>Prev</button>
-        <span>
-          Page {page} of {totalPages}
-        </span>
-        <button onClick={nextPage} disabled={page === totalPages}>Next</button>
-      </div>
-    </div>
+        </TableBody>
+      </Table>
+      <Box sx={{ display: 'flex', alignItems: 'center', mt: 2, gap: 1 }}>
+        <Button onClick={prevPage} disabled={page === 1}>Prev</Button>
+        <Typography>Page {page} of {totalPages}</Typography>
+        <Button onClick={nextPage} disabled={page === totalPages}>Next</Button>
+      </Box>
+    </Box>
   )
 }

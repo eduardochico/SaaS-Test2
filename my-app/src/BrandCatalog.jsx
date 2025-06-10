@@ -1,4 +1,11 @@
 import { useState } from 'react'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
 
 export default function BrandCatalog({ brands, setBrands }) {
   const [name, setName] = useState('')
@@ -32,30 +39,40 @@ export default function BrandCatalog({ brands, setBrands }) {
   }
 
   return (
-    <div>
-      <h2>Brands</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-         
-          placeholder="Brand name"
+    <Box>
+      <Typography variant="h5" sx={{ mb: 2 }}>Brands</Typography>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{ display: 'flex', gap: 1, mb: 2 }}
+      >
+        <TextField
+          label="Brand name"
           value={name}
           onChange={e => setName(e.target.value)}
           required
         />
-        <button type="submit">{editingIndex !== null ? 'Update' : 'Add'}</button>
+        <Button type="submit" variant="contained">
+          {editingIndex !== null ? 'Update' : 'Add'}
+        </Button>
         {editingIndex !== null && (
-          <button type="button" onClick={cancel}>Cancel</button>
+          <Button type="button" onClick={cancel}>
+            Cancel
+          </Button>
         )}
-      </form>
-      <ul>
+      </Box>
+      <List>
         {brands.map((b, i) => (
-          <li key={i}>
-            {b}
-            <button onClick={() => edit(i)}>Edit</button>
-            <button onClick={() => remove(i)}>Delete</button>
-          </li>
+          <ListItem key={i} secondaryAction={
+            <Box>
+              <Button size="small" onClick={() => edit(i)}>Edit</Button>
+              <Button size="small" onClick={() => remove(i)}>Delete</Button>
+            </Box>
+          }>
+            <ListItemText primary={b} />
+          </ListItem>
         ))}
-      </ul>
-    </div>
+      </List>
+    </Box>
   )
 }

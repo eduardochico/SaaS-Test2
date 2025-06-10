@@ -1,4 +1,11 @@
 import { useState } from 'react'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
 
 export default function CategoryCatalog({ categories, setCategories }) {
   const [name, setName] = useState('')
@@ -32,30 +39,38 @@ export default function CategoryCatalog({ categories, setCategories }) {
   }
 
   return (
-    <div>
-      <h2>Categories</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-         
-          placeholder="Category name"
+    <Box>
+      <Typography variant="h5" sx={{ mb: 2 }}>Categories</Typography>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{ display: 'flex', gap: 1, mb: 2 }}
+      >
+        <TextField
+          label="Category name"
           value={name}
           onChange={e => setName(e.target.value)}
           required
         />
-        <button type="submit">{editingIndex !== null ? 'Update' : 'Add'}</button>
+        <Button type="submit" variant="contained">
+          {editingIndex !== null ? 'Update' : 'Add'}
+        </Button>
         {editingIndex !== null && (
-          <button type="button" onClick={cancel}>Cancel</button>
+          <Button type="button" onClick={cancel}>Cancel</Button>
         )}
-      </form>
-      <ul>
+      </Box>
+      <List>
         {categories.map((c, i) => (
-          <li key={i}>
-            {c}
-            <button onClick={() => edit(i)}>Edit</button>
-            <button onClick={() => remove(i)}>Delete</button>
-          </li>
+          <ListItem key={i} secondaryAction={
+            <Box>
+              <Button size="small" onClick={() => edit(i)}>Edit</Button>
+              <Button size="small" onClick={() => remove(i)}>Delete</Button>
+            </Box>
+          }>
+            <ListItemText primary={c} />
+          </ListItem>
         ))}
-      </ul>
-    </div>
+      </List>
+    </Box>
   )
 }

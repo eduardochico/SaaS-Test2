@@ -1,4 +1,11 @@
 import { useState, useEffect } from 'react'
+import Box from '@mui/material/Box'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
 
 export default function ProductForm({ onSave, onCancel, initial, brands = [], categoriesOptions = [] }) {
   const [image, setImage] = useState(initial?.image || '')
@@ -29,8 +36,7 @@ export default function ProductForm({ onSave, onCancel, initial, brands = [], ca
   }
 
   const handleCategoryChange = e => {
-    const options = Array.from(e.target.selectedOptions).map(o => o.value)
-    setCategories(options)
+    setCategories(e.target.value)
   }
 
   const handleSubmit = e => {
@@ -43,63 +49,49 @@ export default function ProductForm({ onSave, onCancel, initial, brands = [], ca
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Box component="form" onSubmit={handleSubmit} sx={{ display: 'grid', gap: 2 }}>
       <div>
-        <label>
-          Product Image
-          <input type="file" accept="image/*" onChange={handleImageChange} />
-        </label>
-        {image && <img src={image} alt="preview" />}
+        <Button variant="outlined" component="label">
+          Upload Image
+          <input hidden type="file" accept="image/*" onChange={handleImageChange} />
+        </Button>
+        {image && (
+          <Box component="img" src={image} alt="preview" sx={{ width: 50, display: 'block', mt: 1 }} />
+        )}
       </div>
-      <div>
-        <label>
-          SKU
-          <input value={sku} onChange={e => setSku(e.target.value.toUpperCase())} required />
-        </label>
-      </div>
-      <div>
-        <label>
-          Product Name
-          <input value={name} onChange={e => setName(e.target.value)} maxLength={50} required />
-        </label>
-      </div>
-      <div>
-        <label>
-          Brand
-          <select value={brand} onChange={e => setBrand(e.target.value)}>
-            <option value="">Select brand</option>
-            {brands.map(b => (
-              <option key={b} value={b}>{b}</option>
-            ))}
-          </select>
-        </label>
-      </div>
-      <div>
-        <label>
-          Categories
-          <select multiple value={categories} onChange={handleCategoryChange}>
-            {categoriesOptions.map(c => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
-        </label>
-      </div>
-      <div>
-        <label>
-          Price
-          <input type="number" step="0.01" value={price} onChange={e => setPrice(e.target.value)} required />
-        </label>
-      </div>
-      <div>
-        <label>
-          Discount %
-          <input type="number" step="0.01" value={discount} onChange={e => setDiscount(e.target.value)} min="0" max="100" />
-        </label>
-      </div>
-      <div>
-        <button type="submit">Save</button>
-        <button type="button" onClick={onCancel}>Cancel</button>
-      </div>
-    </form>
+      <TextField label="SKU" value={sku} onChange={e => setSku(e.target.value.toUpperCase())} required />
+      <TextField label="Product Name" value={name} onChange={e => setName(e.target.value)} inputProps={{ maxLength: 50 }} required />
+      <FormControl>
+        <InputLabel>Brand</InputLabel>
+        <Select value={brand} label="Brand" onChange={e => setBrand(e.target.value)}>
+          <MenuItem value="">
+            <em>Select brand</em>
+          </MenuItem>
+          {brands.map(b => (
+            <MenuItem key={b} value={b}>{b}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <FormControl>
+        <InputLabel>Categories</InputLabel>
+        <Select
+          multiple
+          value={categories}
+          onChange={handleCategoryChange}
+          label="Categories"
+          renderValue={selected => selected.join(', ')}
+        >
+          {categoriesOptions.map(c => (
+            <MenuItem key={c} value={c}>{c}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <TextField label="Price" type="number" step="0.01" value={price} onChange={e => setPrice(e.target.value)} required />
+      <TextField label="Discount %" type="number" step="0.01" value={discount} onChange={e => setDiscount(e.target.value)} inputProps={{ min: 0, max: 100 }} />
+      <Box sx={{ display: 'flex', gap: 1 }}>
+        <Button type="submit" variant="contained">Save</Button>
+        <Button type="button" onClick={onCancel}>Cancel</Button>
+      </Box>
+    </Box>
   )
 }

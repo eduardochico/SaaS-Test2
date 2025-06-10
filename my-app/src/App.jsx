@@ -4,6 +4,15 @@ import viteLogo from '/vite.svg'
 import ProductCatalog from './ProductCatalog.jsx'
 import BrandCatalog from './BrandCatalog.jsx'
 import CategoryCatalog from './CategoryCatalog.jsx'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemText from '@mui/material/ListItemText'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,26 +28,24 @@ function App() {
 
   const homeContent = (
     <>
-      <div>
+      <Box>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} alt="React logo" />
         </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div>
-        <button onClick={() => setCount((count) => count + 1)}>
+      </Box>
+      <Typography variant="h4" sx={{ mt: 2 }}>Vite + React</Typography>
+      <Box sx={{ my: 2 }}>
+        <Button variant="contained" onClick={() => setCount(c => c + 1)}>
           count is {count}
-        </button>
-        <p>
+        </Button>
+        <Typography>
           Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p>
-        Click on the Vite and React logos to learn more
-      </p>
+        </Typography>
+      </Box>
+      <Typography>Click on the Vite and React logos to learn more</Typography>
     </>
   )
 
@@ -50,41 +57,43 @@ function App() {
   }[page]
 
   return (
-    <div>
-      <aside>
-        <div>
-          <span>My App</span>
-        </div>
-        <nav>
-          <ul>
-            <li>
-              <a href="#" onClick={() => setPage('home')}>
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={() => setPage('products')}>
-                Products
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={() => setPage('brands')}>
-                Brands
-              </a>
-            </li>
-            <li>
-              <a href="#" onClick={() => setPage('categories')}>
-                Categories
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </aside>
-      <div>
-        <header>
-          <h1>{pageTitle}</h1>
-        </header>
-        <main>
+    <Box sx={{ display: 'flex' }}>
+      <Box component="aside" sx={{ width: 200, p: 2, bgcolor: 'background.paper', height: '100vh' }}>
+        <Typography variant="h6" sx={{ mb: 2 }}>
+          My App
+        </Typography>
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton onClick={() => setPage('home')}>
+              <ListItemText primary="Home" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton onClick={() => setPage('products')}>
+              <ListItemText primary="Products" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton onClick={() => setPage('brands')}>
+              <ListItemText primary="Brands" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton onClick={() => setPage('categories')}>
+              <ListItemText primary="Categories" />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Box>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" color="default">
+          <Toolbar>
+            <Typography variant="h6" component="div">
+              {pageTitle}
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Box sx={{ p: 2 }}>
           {page === 'home' && homeContent}
           {page === 'products' && (
             <ProductCatalog brands={brands} categories={categories} />
@@ -98,9 +107,9 @@ function App() {
               setCategories={setCategories}
             />
           )}
-        </main>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   )
 }
 
