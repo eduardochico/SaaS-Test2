@@ -10,6 +10,7 @@ import ListItemText from '@mui/material/ListItemText'
 export default function CategoryCatalog({ categories, setCategories }) {
   const [name, setName] = useState('')
   const [editingIndex, setEditingIndex] = useState(null)
+  const [showForm, setShowForm] = useState(false)
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -22,11 +23,13 @@ export default function CategoryCatalog({ categories, setCategories }) {
       setCategories([...categories, value])
     }
     setName('')
+    setShowForm(false)
   }
 
   const edit = index => {
     setName(categories[index])
     setEditingIndex(index)
+    setShowForm(true)
   }
 
   const remove = index => {
@@ -36,37 +39,48 @@ export default function CategoryCatalog({ categories, setCategories }) {
   const cancel = () => {
     setName('')
     setEditingIndex(null)
+    setShowForm(false)
+  }
+
+  if (showForm) {
+    return (
+      <Box>
+        <Typography variant="h5" sx={{ mb: 2 }}>
+          {editingIndex !== null ? 'Edit Category' : 'Add Category'}
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', gap: 1 }}>
+          <TextField
+            label="Category name"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            required
+          />
+          <Button type="submit" variant="contained">
+            {editingIndex !== null ? 'Update' : 'Add'}
+          </Button>
+          <Button type="button" onClick={cancel}>Cancel</Button>
+        </Box>
+      </Box>
+    )
   }
 
   return (
     <Box>
       <Typography variant="h5" sx={{ mb: 2 }}>Categories</Typography>
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{ display: 'flex', gap: 1, mb: 2 }}
-      >
-        <TextField
-          label="Category name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          required
-        />
-        <Button type="submit" variant="contained">
-          {editingIndex !== null ? 'Update' : 'Add'}
-        </Button>
-        {editingIndex !== null && (
-          <Button type="button" onClick={cancel}>Cancel</Button>
-        )}
-      </Box>
+      <Button variant="contained" sx={{ mb: 2 }} onClick={() => { setShowForm(true); setName(''); setEditingIndex(null) }}>
+        Add Category
+      </Button>
       <List>
         {categories.map((c, i) => (
-          <ListItem key={i} secondaryAction={
-            <Box>
-              <Button size="small" onClick={() => edit(i)}>Edit</Button>
-              <Button size="small" onClick={() => remove(i)}>Delete</Button>
-            </Box>
-          }>
+          <ListItem
+            key={i}
+            secondaryAction={
+              <Box>
+                <Button size="small" onClick={() => edit(i)}>Edit</Button>
+                <Button size="small" onClick={() => remove(i)}>Delete</Button>
+              </Box>
+            }
+          >
             <ListItemText primary={c} />
           </ListItem>
         ))}
