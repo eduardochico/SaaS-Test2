@@ -114,7 +114,7 @@ export default function ProductCatalog({ brands, categories }) {
             const index = start + i
             return (
               <TableRow key={p.sku}>
-                <TableCell><img src={p.image} alt={p.name} /></TableCell>
+                <TableCell><img src={p.image || placeholder} alt={p.name} /></TableCell>
                 <TableCell>{p.sku}</TableCell>
                 <TableCell>{p.name}</TableCell>
                 <TableCell>{p.brand}</TableCell>

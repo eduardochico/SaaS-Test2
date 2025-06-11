@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react'
-
-const placeholder = 'https://via.placeholder.com/50'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
@@ -48,7 +46,7 @@ export default function ProductForm({ onSave, onCancel, initial, brands = [], ca
       return
     }
     onSave({
-      image: image || placeholder,
+      image,
       sku,
       name,
       brand,
@@ -65,12 +63,9 @@ export default function ProductForm({ onSave, onCancel, initial, brands = [], ca
           Upload Image
           <input hidden type="file" accept="image/*" onChange={handleImageChange} />
         </Button>
-        <Box
-          component="img"
-          src={image || placeholder}
-          alt="preview"
-          sx={{ width: 50, display: 'block', mt: 1 }}
-        />
+        {image && (
+          <Box component="img" src={image} alt="preview" sx={{ width: 50, display: 'block', mt: 1 }} />
+        )}
       </div>
       <TextField label="SKU" value={sku} onChange={e => setSku(e.target.value.toUpperCase())} required />
       <TextField label="Product Name" value={name} onChange={e => setName(e.target.value)} inputProps={{ maxLength: 50 }} required />
