@@ -64,20 +64,32 @@ export default function ProductCatalog({ brands, categories }) {
   const prevPage = () => setPage(p => Math.max(1, p - 1))
   const nextPage = () => setPage(p => Math.min(totalPages, p + 1))
 
-  return (
-    <Box>
-      <Typography variant="h5" sx={{ mb: 2 }}>Product Catalog</Typography>
-      {showForm ? (
+  if (showForm) {
+    return (
+      <Box>
+        <Typography variant="h5" sx={{ mb: 2 }}>
+          {editingIndex !== null ? 'Edit Product' : 'Add Product'}
+        </Typography>
         <ProductForm
           onSave={editingIndex !== null ? updateProduct : addProduct}
-          onCancel={() => { setShowForm(false); setEditingIndex(null) }}
+          onCancel={() => {
+            setShowForm(false)
+            setEditingIndex(null)
+          }}
           initial={editingIndex !== null ? products[editingIndex] : null}
           brands={brands}
           categoriesOptions={categories}
         />
-      ) : (
-        <Button variant="contained" onClick={() => setShowForm(true)}>Add Product</Button>
-      )}
+      </Box>
+    )
+  }
+
+  return (
+    <Box>
+      <Typography variant="h5" sx={{ mb: 2 }}>Product Catalog</Typography>
+      <Button variant="contained" onClick={() => setShowForm(true)}>
+        Add Product
+      </Button>
       <TextField
         placeholder="Search..."
         value={search}
