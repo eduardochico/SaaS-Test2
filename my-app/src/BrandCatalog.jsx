@@ -45,9 +45,6 @@ export default function BrandCatalog({ brands, setBrands }) {
   if (showForm) {
     return (
       <Box>
-        <Typography variant="h5" sx={{ mb: 2 }}>
-          {editingIndex !== null ? 'Edit Brand' : 'Add Brand'}
-        </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', gap: 1 }}>
           <TextField
             label="Brand name"
@@ -66,10 +63,11 @@ export default function BrandCatalog({ brands, setBrands }) {
 
   return (
     <Box>
-      <Typography variant="h5" sx={{ mb: 2 }}>Brands</Typography>
-      <Button variant="contained" sx={{ mb: 2 }} onClick={() => { setShowForm(true); setName(''); setEditingIndex(null) }}>
-        Add Brand
-      </Button>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+        <Button variant="contained" onClick={() => { setShowForm(true); setName(''); setEditingIndex(null) }}>
+          Add Brand
+        </Button>
+      </Box>
       <List>
         {brands.map((b, i) => (
           <ListItem
