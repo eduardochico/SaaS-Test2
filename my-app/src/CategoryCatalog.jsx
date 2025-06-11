@@ -45,9 +45,6 @@ export default function CategoryCatalog({ categories, setCategories }) {
   if (showForm) {
     return (
       <Box>
-        <Typography variant="h5" sx={{ mb: 2 }}>
-          {editingIndex !== null ? 'Edit Category' : 'Add Category'}
-        </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', gap: 1 }}>
           <TextField
             label="Category name"
@@ -66,10 +63,11 @@ export default function CategoryCatalog({ categories, setCategories }) {
 
   return (
     <Box>
-      <Typography variant="h5" sx={{ mb: 2 }}>Categories</Typography>
-      <Button variant="contained" sx={{ mb: 2 }} onClick={() => { setShowForm(true); setName(''); setEditingIndex(null) }}>
-        Add Category
-      </Button>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+        <Button variant="contained" onClick={() => { setShowForm(true); setName(''); setEditingIndex(null) }}>
+          Add Category
+        </Button>
+      </Box>
       <List>
         {categories.map((c, i) => (
           <ListItem

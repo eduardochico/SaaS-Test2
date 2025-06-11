@@ -67,9 +67,6 @@ export default function ProductCatalog({ brands, categories }) {
   if (showForm) {
     return (
       <Box>
-        <Typography variant="h5" sx={{ mb: 2 }}>
-          {editingIndex !== null ? 'Edit Product' : 'Add Product'}
-        </Typography>
         <ProductForm
           onSave={editingIndex !== null ? updateProduct : addProduct}
           onCancel={() => {
@@ -86,15 +83,16 @@ export default function ProductCatalog({ brands, categories }) {
 
   return (
     <Box>
-      <Typography variant="h5" sx={{ mb: 2 }}>Product Catalog</Typography>
-      <Button variant="contained" onClick={() => setShowForm(true)}>
-        Add Product
-      </Button>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
+        <Button variant="contained" onClick={() => setShowForm(true)}>
+          Add Product
+        </Button>
+      </Box>
       <TextField
         placeholder="Search..."
         value={search}
         onChange={e => { setSearch(e.target.value); setPage(1) }}
-        sx={{ my: 2 }}
+        sx={{ mb: 2 }}
       />
       <Table>
         <TableHead>
