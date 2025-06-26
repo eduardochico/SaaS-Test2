@@ -6,7 +6,7 @@ export class Category {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true, length: 50 })
+  @Column({ unique: true, length: 30 })
   name: string;
 
   @ManyToMany(() => Product, product => product.categories)
